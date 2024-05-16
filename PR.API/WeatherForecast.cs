@@ -1,4 +1,4 @@
-namespace HRM.API
+namespace BN.API
 {
     public class WeatherForecast
     {

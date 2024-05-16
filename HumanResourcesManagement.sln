@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRM.Domain", "HRM.Domain\HR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRM.Service", "HRM.Service\HRM.Service.csproj", "{098D3C2D-A509-4A09-B38A-BF265959585F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PR.API", "PR.API\PR.API.csproj", "{654B0E36-D34D-4904-91EE-77D6393C7C53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{098D3C2D-A509-4A09-B38A-BF265959585F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{098D3C2D-A509-4A09-B38A-BF265959585F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{098D3C2D-A509-4A09-B38A-BF265959585F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{654B0E36-D34D-4904-91EE-77D6393C7C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{654B0E36-D34D-4904-91EE-77D6393C7C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{654B0E36-D34D-4904-91EE-77D6393C7C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{654B0E36-D34D-4904-91EE-77D6393C7C53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRM.Service.DataAccess
+namespace HRM.Domain.Enums
 {
-    public class HRMDbContext
+    public enum MethodAPI : byte
     {
+        GET = 0,
+        POST = 1,
+        PUT = 2,
+        DELETE = 3
     }
 }
