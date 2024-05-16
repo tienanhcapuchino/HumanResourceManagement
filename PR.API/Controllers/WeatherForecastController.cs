@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace HRM.API.Controllers
+namespace BN.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace HRM.API
+namespace PR.API
 {
     public class Startup
     {
