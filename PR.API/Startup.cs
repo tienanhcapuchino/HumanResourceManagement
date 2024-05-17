@@ -1,5 +1,7 @@
 ﻿using HRM.Domain.Constants;
 using HRM.Domain.Entities;
+using HRM.Service.HR.Interfaces;
+using HRM.Service.HR.Services;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -23,6 +25,7 @@ namespace PR.API
             {
                 options.UseSqlServer(Configuration.GetConnectionString(ConfigurationKey.HRMConnectionString));
             });
+            services.AddTransient<INotificationService, NotificationService>();
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
