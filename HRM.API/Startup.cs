@@ -1,6 +1,8 @@
 ﻿using HRM.Domain.Constants;
 using HRM.Domain.Entities;
 using HRM.Domain.HRM.Entities;
+using HRM.Service.PR.Interfaces;
+using HRM.Service.PR.Services;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -24,6 +26,7 @@ namespace HRM.API
             {
                 options.UseMySQL(Configuration.GetConnectionString(ConfigurationKey.MySqlConnectionString));
             });
+            services.AddTransient<IOpenAPIHRService, OpenAPIHRService>();
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
