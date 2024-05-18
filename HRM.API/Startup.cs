@@ -1,5 +1,6 @@
 ﻿using HRM.Domain.Constants;
 using HRM.Domain.Entities;
+using HRM.Domain.HRM.Entities;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -19,9 +20,9 @@ namespace HRM.API
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddHealthChecks();
-            services.AddDbContext<HrmContext>(options =>
+            services.AddDbContext<MydbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString(ConfigurationKey.HRMConnectionString));
+                options.UseMySQL(Configuration.GetConnectionString(ConfigurationKey.MySqlConnectionString));
             });
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
