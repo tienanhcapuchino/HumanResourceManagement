@@ -48,7 +48,6 @@ namespace HRM.API
                 AllowCachingResponses = true,
             });
 
-            app.Run();
         }
     }
 }
