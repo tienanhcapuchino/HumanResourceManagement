@@ -3,6 +3,7 @@
     public static class ConfigurationKey
     {
         public const string HRMConnectionString = "HRMConnectStr";
+        public const string MySqlConnectionString = "MySqlConnectStr";
     }
     public static class RoutesAPI_HR
     {
