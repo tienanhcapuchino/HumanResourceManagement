@@ -15,7 +15,7 @@ public partial class Personal
 
     public DateOnly? BirthDate { get; set; }
 
-    public string? SocialSecurityNumber { get; set; }
+    public decimal? SocialSecurityNumber { get; set; }
 
     public string? DriversLicense { get; set; }
 
@@ -45,5 +45,5 @@ public partial class Personal
 
     public virtual BenefitPlan? BenefitPlan { get; set; }
 
-    public virtual ICollection<Employment> Employments { get; set; } = new List<Employment>();
+    public virtual Employment? Employment { get; set; }
 }

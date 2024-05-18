@@ -78,9 +78,7 @@ public partial class HrmContext : DbContext
                 .HasComment("MÃ CÔNG VIỆC")
                 .HasColumnName("WORKERS_COMP_CODE");
 
-            entity.HasOne(d => d.Personal).WithMany(p => p.Employments)
-                .HasForeignKey(d => d.PersonalId)
-                .HasConstraintName("FK_EMPLOYMENT_PERSONAL");
+            
         });
 
         modelBuilder.Entity<EmploymentWorkingTime>(entity =>
@@ -203,6 +201,9 @@ public partial class HrmContext : DbContext
             entity.HasOne(d => d.BenefitPlan).WithMany(p => p.Personals)
                 .HasForeignKey(d => d.BenefitPlanId)
                 .HasConstraintName("FK_PERSONAL_BENEFIT_PLANS");
+            entity.HasOne(d => d.Employment).WithOne(p => p.Personal)
+                .HasForeignKey<Employment>(p => p.PersonalId)
+                .HasConstraintName("FK_EMPLOYMENT_PERSONAL");
         });
 
         OnModelCreatingPartial(modelBuilder);

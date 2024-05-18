@@ -9,8 +9,24 @@ namespace HRM.Domain.Models
 {
     public class NotificationModel
     {
-        public string Title { get; set; }
+        public List<NotificationData> Datas { get; set; }
+        public int TotalCount { get; set; }
+    }
+    public class NotificationData
+    {
         public string Content { get; set; }
         public NotificationType Type { get; set; }
+        public DateTime PublishedTime { get; set; }
     }
+    public class EmployeeBaseModel
+    {
+        public string EmployeeName { get; set; }
+    }
+
+    public class EmployeeBirthDateModel : EmployeeBaseModel
+    {
+        public DateOnly BirthDate { get; set; }
+        public int Ages { get; set; }
+    }
+
 }
