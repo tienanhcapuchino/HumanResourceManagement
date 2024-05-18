@@ -9,6 +9,6 @@ namespace HRM.Service.HR.Interfaces
 {
     public interface INotificationService
     {
-        Task<List<NotificationModel>> GetAllNotificationsAsync();
+        Task<NotificationModel> GetAllNotificationsAsync();
     }
 }

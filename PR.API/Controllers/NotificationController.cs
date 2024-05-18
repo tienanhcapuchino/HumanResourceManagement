@@ -16,7 +16,7 @@ namespace PR.API.Controllers
         }
 
         [HttpGet("getall")]
-        public async Task<List<NotificationModel>> GetAllNotifications()
+        public async Task<NotificationModel> GetAllNotifications()
         {
             try
             {
