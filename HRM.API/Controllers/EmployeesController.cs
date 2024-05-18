@@ -7,6 +7,6 @@ namespace HRM.API.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
-
+        
     }
 }
