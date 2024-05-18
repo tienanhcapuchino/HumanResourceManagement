@@ -1,9 +1,11 @@
-﻿using HRM.Domain.Constants;
+﻿using HRM.Domain;
+using HRM.Domain.Constants;
 using HRM.Domain.Entities;
 using HRM.Domain.Enums;
 using HRM.Domain.Models;
 using HRM.Service.HR.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 
 namespace HRM.Service.HR.Services
@@ -11,6 +13,9 @@ namespace HRM.Service.HR.Services
     public class NotificationService : INotificationService
     {
         private readonly HrmContext _dbContext;
+        private readonly int dateToday = DateTime.UtcNow.Day;
+        private readonly int monthToday = DateTime.UtcNow.Month;
+        private readonly int yearToday = DateTime.UtcNow.Year;
         public NotificationService(HrmContext dbContext)
         {
             _dbContext = dbContext;
@@ -46,9 +51,6 @@ namespace HRM.Service.HR.Services
 
         public async Task<List<EmployeeBirthDateModel>> GetAllEmployeesHaveDateBirthToday()
         {
-            var dateToday = DateTime.UtcNow.Day;
-            var monthToday = DateTime.UtcNow.Month;
-            var yearToday = DateTime.UtcNow.Year;
             var allEmployees = await _dbContext.Employments
                 .Include(p => p.Personal)
                 .Where(e => e.Personal.BirthDate.Value.Day == dateToday
@@ -65,9 +67,6 @@ namespace HRM.Service.HR.Services
 
         public async Task<List<EmployeeAniveralModel>> GetAllEmployeesAniveral()
         {
-            var dateToday = DateTime.UtcNow.Day;
-            var monthToday = DateTime.UtcNow.Month;
-            var yearToday = DateTime.UtcNow.Year;
             var allEmps = await _dbContext.Employments
                                 .Where(e => e.HireDateForWorking.Value.Day == dateToday
                                             && e.HireDateForWorking.Value.Month == monthToday)
@@ -83,27 +82,46 @@ namespace HRM.Service.HR.Services
         public async Task<List<EmployeesLimitedVacationModel>> GetEmployeesLimitedVacation()
         {
             var result = new List<EmployeesLimitedVacationModel>();
-            var allEmpsLimit = _dbContext.Employments.Include(p => p.Personal)
-                               .Include(e => e.EmploymentWorkingTimes).AsQueryable();
-            foreach (var emp in allEmpsLimit)
+            var allEmpsLimit = await _dbContext.Employments.Include(p => p.Personal)
+                               .Include(e => e.EmploymentWorkingTimes).ToListAsync();
+
+            #region get vacations day from OpenAPI from HR
+
+            HttpClient client = new HttpClient();
+            var allEmployeesId = allEmpsLimit.Select(x => x.EmploymentId).ToList();
+            string jsonData = JsonConvert.SerializeObject(allEmployeesId);
+            var responseAPI = CommonUIService.GetDataAPI($"{RoutesAPI_HR.RootHM_APIUrl}{RoutesAPI_PR.GetEmployeesVacations}", MethodAPI.POST, jsonData);
+            #endregion
+
+            if (responseAPI.IsSuccessStatusCode)
             {
-                decimal? workingTimeActual = 0;
-                if (emp.EmploymentWorkingTimes?.Count > 0)
+                var dataResponse = await responseAPI.Content.ReadAsStringAsync();
+                var employeesHR = JsonConvert.DeserializeObject<List<EmployeesVactionModel>>(dataResponse);
+                if (employeesHR != null && employeesHR.Count > 0)
                 {
-                    foreach(var empWork in emp.EmploymentWorkingTimes)
+                    foreach (var employee in employeesHR)
                     {
-                        workingTimeActual += empWork.NumberDaysActualOfWorkingPerMonth;
+                        var currentEmployee = allEmpsLimit
+                                                    .Where(x => x.EmploymentId == employee.EmployeeId)
+                                                    .FirstOrDefault();
+                        if (currentEmployee != null)
+                        {
+                            var currentWorkingTime = currentEmployee.EmploymentWorkingTimes
+                                                    .Where(w => w.YearWorking.Value.Year == yearToday && w.MonthWorking == monthToday)
+                                                    .Select(w => w.TotalNumberVacationWorkingDaysPerMonth).FirstOrDefault();
+                            if (currentWorkingTime >= employee.VactionDays)
+                            {
+                                result.Add(new EmployeesLimitedVacationModel
+                                {
+                                    EmployeeName = employee.EmployeeName,
+                                    NumberOfVacation = employee.VactionDays
+                                });
+                            }
+                        }
                     }
                 }
-                if (workingTimeActual.HasValue && workingTimeActual >= emp.NumberDaysRequirementOfWorkingPerMonth)
-                {
-                    result.Add(new EmployeesLimitedVacationModel
-                    {
-                        EmployeeName = emp.Personal.CurrentFirstName + emp.Personal.CurrentMiddleName + emp.Personal.CurrentLastName,
-                        NumberOfVacation = emp.NumberDaysRequirementOfWorkingPerMonth.Value
-                    });
-                }
             }
+
             return await Task.FromResult(result);
         }
 

@@ -2,9 +2,7 @@
 using HRM.Domain.Entities;
 using HRM.Service.HR.Interfaces;
 using HRM.Service.HR.Services;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace PR.API
 {
@@ -42,7 +40,7 @@ namespace PR.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "APIOpenSource");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payrolment Department API");
                 });
             }
             app.UseCors(build =>

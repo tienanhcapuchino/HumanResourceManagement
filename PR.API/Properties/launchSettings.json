@@ -8,8 +8,8 @@
       "sslPort": 0
     }
   },
-  "PR.API": {
-    "http": {
+  "profiles": {
+    "PR.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
