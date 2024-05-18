@@ -28,5 +28,12 @@ namespace HRM.Domain.Models
         public DateOnly BirthDate { get; set; }
         public int Ages { get; set; }
     }
-
+    public class EmployeeAniveralModel : EmployeeBaseModel
+    {
+        public int AniveralYears { get; set; }
+    }
+    public class EmployeesLimitedVacationModel : EmployeeBaseModel
+    {
+        public decimal NumberOfVacation { get; set; }
+    }
 }

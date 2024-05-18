@@ -20,7 +20,10 @@ namespace PR.API
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-            services.AddHealthChecks();
+            services.AddCors(p => p.AddDefaultPolicy(build =>
+            {
+                build.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
             services.AddDbContext<HrmContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString(ConfigurationKey.HRMConnectionString));
@@ -29,29 +32,32 @@ namespace PR.API
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if (!env.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+            else
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "APIOpenSource");
+                });
             }
-
-            app.UseAuthorization();
+            app.UseCors(build =>
+            {
+                build.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.MapControllers();
+            app.UseRouting();
 
-            app.MapHealthChecks("/health", new HealthCheckOptions
-            {
-                ResultStatusCodes =
-                {
-                    [HealthStatus.Healthy] = StatusCodes.Status200OK,
-                    [HealthStatus.Degraded] = StatusCodes.Status200OK,
-                    [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
-                },
-                AllowCachingResponses = true,
-            });
+            app.UseAuthorization();
+            app.UseAuthentication();
 
-            app.Run();
         }
     }
 }
