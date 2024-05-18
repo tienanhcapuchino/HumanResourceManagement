@@ -44,6 +44,16 @@ namespace HRM.Service.HR.Services
             }
             #endregion
 
+            #region get employees limited vacations
+
+            var employeesLimited = await GetEmployeesLimitedVacation();
+            if (employeesLimited != null && employeesLimited.Any())
+            {
+                result.Datas.AddRange(GenerateNotificationContent(employeesLimited, NotificationType.LimitedNumberOfDatysVacation));
+            }
+
+            #endregion
+
             result.Datas = result.Datas.OrderBy(o => o.PublishedTime).ToList();
             result.TotalCount = result.Datas.Count;
             return result;
@@ -82,47 +92,55 @@ namespace HRM.Service.HR.Services
         public async Task<List<EmployeesLimitedVacationModel>> GetEmployeesLimitedVacation()
         {
             var result = new List<EmployeesLimitedVacationModel>();
-            var allEmpsLimit = await _dbContext.Employments.Include(p => p.Personal)
+            try
+            {
+                var allEmpsLimit = await _dbContext.Employments.Include(p => p.Personal)
                                .Include(e => e.EmploymentWorkingTimes).ToListAsync();
 
-            #region get vacations day from OpenAPI from HR
+                #region get vacations day from OpenAPI from HR
 
-            HttpClient client = new HttpClient();
-            var allEmployeesId = allEmpsLimit.Select(x => x.EmploymentId).ToList();
-            string jsonData = JsonConvert.SerializeObject(allEmployeesId);
-            var responseAPI = CommonUIService.GetDataAPI($"{RoutesAPI_HR.RootHM_APIUrl}{RoutesAPI_PR.GetEmployeesVacations}", MethodAPI.POST, jsonData);
-            #endregion
+                HttpClient client = new HttpClient();
+                var allEmployeesId = allEmpsLimit.Select(x => x.EmploymentId).ToList();
+                string jsonData = JsonConvert.SerializeObject(allEmployeesId);
+                string urlAPI = $"{RoutesAPI_HR.RootHM_APIUrl}{RoutesAPI_PR.GetEmployeesVacations}";
+                var responseAPI = CommonUIService.GetDataAPI(urlAPI, MethodAPI.POST, jsonData);
+                #endregion
 
-            if (responseAPI.IsSuccessStatusCode)
-            {
-                var dataResponse = await responseAPI.Content.ReadAsStringAsync();
-                var employeesHR = JsonConvert.DeserializeObject<List<EmployeesVactionModel>>(dataResponse);
-                if (employeesHR != null && employeesHR.Count > 0)
+                if (responseAPI.IsSuccessStatusCode)
                 {
-                    foreach (var employee in employeesHR)
+                    var dataResponse = await responseAPI.Content.ReadAsStringAsync();
+                    var employeesHR = JsonConvert.DeserializeObject<List<EmployeesVactionModel>>(dataResponse);
+                    if (employeesHR != null && employeesHR.Count > 0)
                     {
-                        var currentEmployee = allEmpsLimit
-                                                    .Where(x => x.EmploymentId == employee.EmployeeId)
-                                                    .FirstOrDefault();
-                        if (currentEmployee != null)
+                        foreach (var employee in employeesHR)
                         {
-                            var currentWorkingTime = currentEmployee.EmploymentWorkingTimes
-                                                    .Where(w => w.YearWorking.Value.Year == yearToday && w.MonthWorking == monthToday)
-                                                    .Select(w => w.TotalNumberVacationWorkingDaysPerMonth).FirstOrDefault();
-                            if (currentWorkingTime >= employee.VactionDays)
+                            var currentEmployee = allEmpsLimit
+                                                        .Where(x => x.EmploymentId == employee.EmployeeId)
+                                                        .FirstOrDefault();
+                            if (currentEmployee != null)
                             {
-                                result.Add(new EmployeesLimitedVacationModel
+                                var currentWorkingTime = currentEmployee.EmploymentWorkingTimes
+                                                        .Where(w => w.YearWorking.Value.Year == yearToday && w.MonthWorking == monthToday)
+                                                        .Select(w => w.TotalNumberVacationWorkingDaysPerMonth).FirstOrDefault();
+                                if (currentWorkingTime >= employee.VactionDays)
                                 {
-                                    EmployeeName = employee.EmployeeName,
-                                    NumberOfVacation = employee.VactionDays
-                                });
+                                    result.Add(new EmployeesLimitedVacationModel
+                                    {
+                                        EmployeeName = employee.EmployeeName,
+                                        NumberOfVacation = employee.VactionDays
+                                    });
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            return await Task.FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error when get all employees limited vacation" + ex.Message);
+            }
+            return result;
         }
 
         private List<NotificationData> GenerateNotificationContent<T>(List<T> employees, NotificationType notificationType)
@@ -151,7 +169,7 @@ namespace HRM.Service.HR.Services
                     var employeesAniveral = employees as List<EmployeeAniveralModel>;
                     if (employeesAniveral != null)
                     {
-                        foreach(var employee in employeesAniveral)
+                        foreach (var employee in employeesAniveral)
                         {
                             var notificationData = new NotificationData()
                             {
@@ -181,7 +199,7 @@ namespace HRM.Service.HR.Services
                         }
                     }
                     break;
-                default: 
+                default:
                     break;
             }
             return result;

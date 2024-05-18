@@ -15,7 +15,7 @@ namespace HRM.API.Controllers
             _openAPIHRService = openAPIHRService;
         }
 
-        [HttpGet("hr/getallvacations")]
+        [HttpPost("hr/getallvacations")]
         public async Task<List<EmployeesVactionModel>> GetEmployeesVacationDays([FromBody] List<decimal> employeeIds)
         {
             try
