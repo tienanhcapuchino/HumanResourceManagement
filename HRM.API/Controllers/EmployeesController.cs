@@ -20,7 +20,7 @@ namespace HRM.API.Controllers
         {
             try
             {
-                var result = _service.GetTotalEarning(filterType);
+                var result = await _service.GetTotalEarning(filterType);
                 return Ok(result);
             }
             catch (Exception ex)
