@@ -4,5 +4,5 @@ public class TotalVacationDaysItemModel
 {
     public string Time { get; set; }
 
-    public int DaysTaken { get; set; }
+    public decimal DaysTaken { get; set; }
 }

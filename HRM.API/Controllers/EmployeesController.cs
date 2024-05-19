@@ -1,4 +1,5 @@
-﻿using HRM.Service.HRM.Interfaces;
+﻿using HRM.Domain.Enums;
+using HRM.Service.HRM.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +16,8 @@ namespace HRM.API.Controllers
             _service = service;
         }
 
-        [HttpGet("get-total-earning/{filterType:int}")]
-        public async Task<IActionResult> GetTotalEarning(int filterType = 0)
+        [HttpGet("get-total-earning/{filterType}")]
+        public async Task<IActionResult> GetTotalEarning(HrmFilterType filterType)
         {
             try
             {

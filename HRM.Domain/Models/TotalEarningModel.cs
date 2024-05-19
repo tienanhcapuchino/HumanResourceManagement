@@ -4,5 +4,7 @@ public class TotalEarningModel
 {
     public string Name { get; set; }
 
-    public List<TotalEarningItemModel> Items { get; set; }
+    public decimal ToDateValue { get; set; }
+
+    public decimal PrevYearValue { get; set; }
 }

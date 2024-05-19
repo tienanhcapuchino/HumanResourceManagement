@@ -24,6 +24,10 @@ namespace HRM.API
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddCors(p => p.AddDefaultPolicy(build =>
+            {
+                build.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
             services.AddHealthChecks();
             services.AddDbContext<MydbContext>(options =>
             {
@@ -40,7 +44,10 @@ namespace HRM.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors(build =>
+            {
+                build.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
             app.UseAuthorization();
 
             app.MapControllers();
