@@ -156,7 +156,7 @@ namespace HRM.Service.HR.Services
                         {
                             var notificationData = new NotificationData()
                             {
-                                PublishedTime = DateTime.UtcNow,
+                                PublishedTime = DateTime.UtcNow.ToString("dd/MM/yyyy"),
                                 Type = NotificationType.EmployeeBirthDay,
                             };
                             string content = string.Format(NotificationContent.EmployeeBirthDayTitle, employee.EmployeeName, employee.Ages);
@@ -173,7 +173,7 @@ namespace HRM.Service.HR.Services
                         {
                             var notificationData = new NotificationData()
                             {
-                                PublishedTime = DateTime.UtcNow,
+                                PublishedTime = DateTime.UtcNow.ToString("dd/MM/yyyy"),
                                 Type = NotificationType.HiringAniverary,
                             };
                             string content = string.Format(NotificationContent.HiringAniveraryTitle, employee.AniveralYears, employee.EmployeeName);
@@ -190,7 +190,7 @@ namespace HRM.Service.HR.Services
                         {
                             var notificationData = new NotificationData()
                             {
-                                PublishedTime = DateTime.UtcNow,
+                                PublishedTime = DateTime.UtcNow.ToString("dd/MM/yyyy"),
                                 Type = NotificationType.LimitedNumberOfDatysVacation,
                             };
                             string content = string.Format(NotificationContent.HiringAniveraryTitle, employee.EmployeeName, employee.NumberOfVacation);
