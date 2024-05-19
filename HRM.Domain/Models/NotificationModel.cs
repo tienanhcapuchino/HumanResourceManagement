@@ -16,7 +16,7 @@ namespace HRM.Domain.Models
     {
         public string Content { get; set; }
         public NotificationType Type { get; set; }
-        public DateTime PublishedTime { get; set; }
+        public string PublishedTime { get; set; }
     }
     public class EmployeeBaseModel
     {
