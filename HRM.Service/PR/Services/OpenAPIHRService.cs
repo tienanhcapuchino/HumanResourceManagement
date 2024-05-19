@@ -29,6 +29,7 @@ namespace HRM.Service.PR.Services
                         EmployeeName = x.FirstName + x.LastName
                     })
                     .ToListAsync();
+                result.AddRange(employees);
             }
             return result;
         }
