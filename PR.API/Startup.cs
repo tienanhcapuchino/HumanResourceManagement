@@ -5,6 +5,8 @@ using HRM.Service.HR.Interfaces;
 using HRM.Service.HR.Services;
 using HRM.Service.HRM.Interfaces;
 using HRM.Service.HRM.Services;
+using HRM.Service.PR.Interfaces;
+using HRM.Service.PR.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace PR.API
@@ -33,6 +35,7 @@ namespace PR.API
             });
             services.AddTransient<INotificationService, NotificationService>();
             services.AddTransient<IOpenApiPrService, OpenApiPrService>();
+            services.AddTransient<IVacationService, VacationService>();
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {

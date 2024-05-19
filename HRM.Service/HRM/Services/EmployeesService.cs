@@ -19,7 +19,7 @@ public class EmployeesService : IEmployeesService
         _context = context;
     }
 
-    public async Task<List<TotalEarningModel>> GetTotalEarning(int filterType)
+    public async Task<List<TotalEarningModel>> GetTotalEarning(HrmFilterType filterType)
     {
         var result = new List<TotalEarningModel>();
 
@@ -37,7 +37,7 @@ public class EmployeesService : IEmployeesService
             {
                 switch (filterType)
                 {
-                    case (int)HrmFilterType.Shareholder:
+                    case HrmFilterType.Shareholder:
                         var employmentGroupByShareholderStat = employments
                             .GroupBy(
                                 e => e.Personal.ShareholderStatus,
@@ -60,25 +60,13 @@ public class EmployeesService : IEmployeesService
                             result.Add(new TotalEarningModel
                             {
                                 Name = item.ShareHolder == 1 ? "Shareholder" : "Non-shareholder",
-                                Items =
-                                [
-                                    new TotalEarningItemModel
-                                    {
-                                        Time = "To Date",
-                                        Earning = (decimal)totalEarningToDate
-                                    },
-
-                                    new TotalEarningItemModel
-                                    {
-                                        Time = "Previous Year",
-                                        Earning = (decimal)totalEarningLastYear
-                                    }
-                                ]
+                                ToDateValue = (decimal)totalEarningToDate,
+                                PrevYearValue = (decimal)totalEarningLastYear
                             });
                         }
 
                         break;
-                    case (int)HrmFilterType.Gender:
+                    case HrmFilterType.Gender:
                         var employmentGroupByGender = employments
                             .GroupBy(
                                 e => e.Personal.CurrentGender,
@@ -101,28 +89,16 @@ public class EmployeesService : IEmployeesService
                             result.Add(new TotalEarningModel
                             {
                                 Name = item.Gender,
-                                Items =
-                                [
-                                    new TotalEarningItemModel
-                                    {
-                                        Time = "To Date",
-                                        Earning = (decimal)totalEarningToDate
-                                    },
-
-                                    new TotalEarningItemModel
-                                    {
-                                        Time = "Previous Year",
-                                        Earning = (decimal)totalEarningLastYear
-                                    }
-                                ]
+                                ToDateValue = (decimal)totalEarningToDate,
+                                PrevYearValue = (decimal)totalEarningLastYear
                             });
                         }
 
                         break;
-                    case (int)HrmFilterType.Ethnicity:
+                    case HrmFilterType.Ethnicity:
                         var employmentGroupByEthnicity = employments
                             .GroupBy(
-                                e => e.Personal.CurrentGender,
+                                e => e.Personal.Ethnicity,
                                 e => e.EmploymentId,
                                 (ethnicity, ids) => new
                                 {
@@ -142,20 +118,8 @@ public class EmployeesService : IEmployeesService
                             result.Add(new TotalEarningModel
                             {
                                 Name = item.Ethnicity,
-                                Items =
-                                [
-                                    new TotalEarningItemModel
-                                    {
-                                        Time = "To Date",
-                                        Earning = (decimal)totalEarningToDate
-                                    },
-
-                                    new TotalEarningItemModel
-                                    {
-                                        Time = "Previous Year",
-                                        Earning = (decimal)totalEarningLastYear
-                                    }
-                                ]
+                                ToDateValue = (decimal)totalEarningToDate,
+                                PrevYearValue = (decimal)totalEarningLastYear
                             });
                         }
 
