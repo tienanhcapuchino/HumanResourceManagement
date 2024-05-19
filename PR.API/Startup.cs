@@ -2,6 +2,8 @@
 using HRM.Domain.Entities;
 using HRM.Service.HR.Interfaces;
 using HRM.Service.HR.Services;
+using HRM.Service.HRM.Interfaces;
+using HRM.Service.HRM.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace PR.API
@@ -27,6 +29,7 @@ namespace PR.API
                 options.UseSqlServer(Configuration.GetConnectionString(ConfigurationKey.HRMConnectionString));
             });
             services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IOpenApiPrService, OpenApiPrService>();
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {

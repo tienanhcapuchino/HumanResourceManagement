@@ -13,11 +13,19 @@ namespace HRM.Domain.Enums
         PUT = 2,
         DELETE = 3
     }
+    
     public enum NotificationType : byte
     {
         HiringAniverary = 0,
         LimitedNumberOfDatysVacation = 1,
         ChangeBenefitPlan = 2,
         EmployeeBirthDay = 3
+    }
+
+    public enum HrmFilterType
+    {
+        Shareholder,
+        Gender,
+        Ethnicity
     }
 }

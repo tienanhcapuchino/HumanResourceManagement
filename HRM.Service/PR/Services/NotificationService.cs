@@ -102,7 +102,7 @@ namespace HRM.Service.HR.Services
                 HttpClient client = new HttpClient();
                 var allEmployeesId = allEmpsLimit.Select(x => x.EmploymentId).ToList();
                 string jsonData = JsonConvert.SerializeObject(allEmployeesId);
-                string urlAPI = $"{RoutesAPI_HR.RootHM_APIUrl}{RoutesAPI_PR.GetEmployeesVacations}";
+                string urlAPI = $"{RoutesAPI_HRM.RootHRM_APIUrl}{RoutesAPI_PR.GetEmployeesVacations}";
                 var responseAPI = CommonUIService.GetDataAPI(urlAPI, MethodAPI.POST, jsonData);
                 #endregion
 
