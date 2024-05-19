@@ -5,6 +5,7 @@ using HRM.Service.HRM.Interfaces;
 using HRM.Service.HRM.Services;
 using HRM.Service.PR.Interfaces;
 using HRM.Service.PR.Services;
+using HRM.Domain.HRM.Entities;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
