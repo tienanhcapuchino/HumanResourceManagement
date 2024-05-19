@@ -61,7 +61,10 @@ namespace HRM.Service.HR.Services
 
         public async Task<List<EmployeeBirthDateModel>> GetAllEmployeesHaveDateBirthToday()
         {
-            var allEmployees = await _dbContext.Employments
+            var result = new List<EmployeeBirthDateModel>();
+            try
+            {
+                var allEmployees = await _dbContext.Employments
                 .Include(p => p.Personal)
                 .Where(e => e.Personal.BirthDate.Value.Day == dateToday
                             && e.Personal.BirthDate.Value.Month == monthToday)
@@ -72,12 +75,25 @@ namespace HRM.Service.HR.Services
                     Ages = yearToday - e.Personal.BirthDate.Value.Year
                 })
                 .ToListAsync();
-            return allEmployees;
+                if (allEmployees != null && allEmployees.Any())
+                {
+                    result.AddRange(allEmployees);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("error when get all employee has birth date today " + e.Message);
+            }
+            
+            return result;
         }
 
         public async Task<List<EmployeeAniveralModel>> GetAllEmployeesAniveral()
         {
-            var allEmps = await _dbContext.Employments
+            var result = new List<EmployeeAniveralModel>();
+            try
+            {
+                var allEmps = await _dbContext.Employments
                                 .Where(e => e.HireDateForWorking.Value.Day == dateToday
                                             && e.HireDateForWorking.Value.Month == monthToday)
                                 .Include(p => p.Personal)
@@ -86,7 +102,16 @@ namespace HRM.Service.HR.Services
                                     EmployeeName = e.Personal.CurrentFirstName + e.Personal.CurrentMiddleName + e.Personal.CurrentLastName,
                                     AniveralYears = yearToday - e.HireDateForWorking.Value.Year
                                 }).ToListAsync();
-            return allEmps;
+                if (allEmps != null  && allEmps.Any())
+                {
+                    result.AddRange(allEmps);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("error when get all employee has Aniveral today " + e.Message);
+            }
+            return result;
         }
 
         public async Task<List<EmployeesLimitedVacationModel>> GetEmployeesLimitedVacation()
