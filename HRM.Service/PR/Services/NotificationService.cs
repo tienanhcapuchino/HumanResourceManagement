@@ -193,7 +193,7 @@ namespace HRM.Service.HR.Services
                                 PublishedTime = DateTime.UtcNow.ToString("dd/MM/yyyy"),
                                 Type = NotificationType.LimitedNumberOfDatysVacation,
                             };
-                            string content = string.Format(NotificationContent.HiringAniveraryTitle, employee.EmployeeName, employee.NumberOfVacation);
+                            string content = string.Format(NotificationContent.LimitedNumberOfDatysVacationTitle, employee.EmployeeName, employee.NumberOfVacation);
                             notificationData.Content = content;
                             result.Add(notificationData);
                         }
