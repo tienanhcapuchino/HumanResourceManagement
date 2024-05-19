@@ -1,4 +1,5 @@
-﻿using HRM.Domain.Constants;
+﻿using System.Text.Json.Serialization;
+using HRM.Domain.Constants;
 using HRM.Domain.Entities;
 using HRM.Service.HR.Interfaces;
 using HRM.Service.HR.Services;
@@ -17,7 +18,9 @@ namespace PR.API
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddCors(p => p.AddDefaultPolicy(build =>
