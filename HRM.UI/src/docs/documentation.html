@@ -81,7 +81,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h3 class="mb-4">Introduction</h3>
-                    <p>Star Admin 2 Pro is a responsive HTML template that is based on the CSS framework <strong>Bootstrap 5</strong>, and it is built with Sass. Sass compiler makes it easier to code and customize. All Bootstrap components have been modified to fit the style of Star Admin 2 Pro and provide a consistent look throughout the template. Read the documentation of <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> or <a href="https://sass-lang.com/guide/" target="_blank">Sass</a> if you want to learn more.</p>
+                    <p>Purple Admin is a responsive HTML template that is based on the CSS framework <strong>Bootstrap 5</strong>, and it is built with Sass. Sass compiler makes it easier to code and customize. All Bootstrap components have been modified to fit the style of Purple Admin and provide a consistent look throughout the template. Read the documentation of <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> or <a href="https://sass-lang.com/guide/" target="_blank">Sass</a> if you want to learn more.</p>
                     <p>Before you start working with the template, go through the pages that are bundled with the theme. Most of the template example pages contain quick tips on how to create or use a component, which can be really helpful when you need to create something on the fly.</p>
                     <div class="alert alert-info" role="alert">
                       <p class="d-inline text-danger"><strong>Note</strong>: We are trying our best to document how to use the template. If you think that something is missing from the documentation, please tell us about it. If you have any questions or issues regarding this theme please email us at <a class="d-inline text-info" href="mailto:support@bootstrapdash.com">support@bootstrapdash.com</a>
@@ -356,7 +356,8 @@
                       <p class="mt-2">
                         <strong>Step 2: </strong>Add the path to the package files needed from the <strong>node_modules</strong> as a new gulp task like the one given below.
                       <p>
-                        <strong class="text-success">1.buildOptionalVendorScripts.</strong>(for js files) <textarea class="multiple-codes">var ascript72 = gulp.src(['../node_modules/jstree/dist/jstree.min.js'])
+                        <strong class="text-success">1.buildOptionalVendorScripts.</strong>(for js files) <textarea
+                        class="multiple-codes">var ascript72 = gulp.src(['../node_modules/jstree/dist/jstree.min.js'])
                               .pipe(gulp.dest(['./assets/vendors/jstree']));
                             </textarea>
                       </p>
@@ -971,7 +972,7 @@
                           <textarea class="multiple-codes">
     <button class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Basic tooltip">Hover me</button>
     <script>
-    $('[data-bs-toggle="tooltip"]').tooltip();
+      $('[data-bs-toggle="tooltip"]').tooltip();
     </script>
                                       </textarea>
                         </div>
@@ -1000,13 +1001,13 @@
     <button type="button" class="btn btn-danger btn-clipboard" data-clipboard-action="cut" data-clipboard-target="#clipboardExample2">Cut</button>
     
     <script>
-    var clipboard = new Clipboard('.btn-clipboard');
-    clipboard.on('success', function(e) {
-      console.log(e);
-    });
-    clipboard.on('error', function(e) {
-      console.log(e);
-    });
+      var clipboard = new Clipboard('.btn-clipboard');
+      clipboard.on('success', function (e) {
+        console.log(e);
+      });
+      clipboard.on('error', function (e) {
+        console.log(e);
+      });
     </script>
                                       </textarea>
                         </div>
@@ -1080,13 +1081,13 @@
     </div>
     
     <script>
-    (function($) {
-      dragula([document.getElementById("dragula-left"), document.getElementById("dragula-right")]);
-      dragula([document.getElementById("dragula-event-left"), document.getElementById("dragula-event-right")])
-      .on('drop', function(el) {
-        el.className += ' bg-danger';
-      })
-    })(jQuery);
+      (function ($) {
+        dragula([document.getElementById("dragula-left"), document.getElementById("dragula-right")]);
+        dragula([document.getElementById("dragula-event-left"), document.getElementById("dragula-event-right")])
+          .on('drop', function (el) {
+            el.className += ' bg-danger';
+          })
+      })(jQuery);
     </script>
                                     </textarea>
                         </div>
@@ -1113,14 +1114,14 @@
     <div id="ui-slider" class="slider"></div>
     
     <script>
-    var startSlider = document.getElementById('ui-slider');
-    noUiSlider.create(startSlider, {
-    start: [20, 80],
-    range: {
-      'min': [0],
-      'max': [100]
-    }
-    });
+      var startSlider = document.getElementById('ui-slider');
+      noUiSlider.create(startSlider, {
+        start: [20, 80],
+        range: {
+          'min': [0],
+          'max': [100]
+        }
+      });
     </script></textarea>
                         </div>
                         <!-- Ui slider Ends -->
@@ -1157,10 +1158,10 @@
     </div>
     
     <script>
-    var colcade = new Colcade('.grid', {
-      columns: '.grid-col',
-      items: '.grid-item'
-    });
+      var colcade = new Colcade('.grid', {
+        columns: '.grid-col',
+        items: '.grid-item'
+      });
     </script>
                                             </textarea>
                         </div>
@@ -1206,7 +1207,7 @@
     </div>
     
     <script>
-    $("#lightgallery").lightGallery();
+      $("#lightgallery").lightGallery();
     </script>
                                     </textarea>
                         </div>
@@ -1243,7 +1244,7 @@
     </div>
     
     <script>
-    $('.owl-carousel').owlCarousel();
+      $('.owl-carousel').owlCarousel();
     </script></textarea>
                         </div>
                         <!-- Tabs Ends -->
@@ -1345,51 +1346,51 @@
                           <textarea class="multiple-codes">
     <div id="js-grid"></div>
     <script>
-    $("#js-grid").jsGrid({
-      height: "500px",
-      width: "100%",
-      filtering: true,
-      editing: true,
-      inserting: true,
-      sorting: true,
-      paging: true,
-      autoload: true,
-      pageSize: 15,
-      pageButtonCount: 5,
-      deleteConfirm: "Do you really want to delete the client?",
-      controller: db,
-      fields: [{
-        name: "Name",
-        type: "text",
-        width: 150
-      },
-      {
-        name: "Age",
-        type: "number",
-        width: 50
-      },
-      {
-        name: "Address",
-        type: "text",
-        width: 200
-      },
-      {
-        name: "Country",
-        type: "select",
-        items: db.countries,
-        valueField: "Id",
-        textField: "Name"
-      },
-      {
-        name: "Married",
-        type: "checkbox",
-        title: "Is Married",
-        sorting: false
-      },
-      {
-        type: "control"
-      }]
-    });
+      $("#js-grid").jsGrid({
+        height: "500px",
+        width: "100%",
+        filtering: true,
+        editing: true,
+        inserting: true,
+        sorting: true,
+        paging: true,
+        autoload: true,
+        pageSize: 15,
+        pageButtonCount: 5,
+        deleteConfirm: "Do you really want to delete the client?",
+        controller: db,
+        fields: [{
+          name: "Name",
+          type: "text",
+          width: 150
+        },
+        {
+          name: "Age",
+          type: "number",
+          width: 50
+        },
+        {
+          name: "Address",
+          type: "text",
+          width: 200
+        },
+        {
+          name: "Country",
+          type: "select",
+          items: db.countries,
+          valueField: "Id",
+          textField: "Name"
+        },
+        {
+          name: "Married",
+          type: "checkbox",
+          title: "Is Married",
+          sorting: false
+        },
+        {
+          type: "control"
+        }]
+      });
     </script></textarea>
                         </div>
                         <!-- Js-grid Ends -->
@@ -1450,7 +1451,7 @@
     </div>
     
     <script>
-    $('#myTable').tablesort();
+      $('#myTable').tablesort();
     </script>
     
                                         </textarea>
@@ -1480,48 +1481,48 @@
     
     <script>
       var data = {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
       };
       var options = {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          },
-          legend: {
-              display: false
-          },
-          elements: {
-            point: {
-                radius: 0
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
             }
+          }]
+        },
+        legend: {
+          display: false
+        },
+        elements: {
+          point: {
+            radius: 0
           }
-    
+        }
+
       };
-      if($("#lineChart").length) {
+      if ($("#lineChart").length) {
         var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
         var lineChart = new Chart(lineChartCanvas, {
           type: 'line',
@@ -1547,20 +1548,20 @@
     </div>
     
     <script>
-    $(function() {
-      var d1 = [];
-      for (var i = 0; i < Math.PI * 2; i += 0.25) {
-        d1.push([i, Math.sin(i)]);
-      }
-      var d2 = [];
-      for (var i = 0; i < Math.PI * 2; i += 0.25) {
-        d2.push([i, Math.cos(i)]);
-      }
-      var d3 = [];
-      for (var i = 0; i < Math.PI * 2; i += 0.1) {
-        d3.push([i, Math.tan(i)]);
-      }
-      $.plot("#placeholder-basic-option", [{
+      $(function () {
+        var d1 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.25) {
+          d1.push([i, Math.sin(i)]);
+        }
+        var d2 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.25) {
+          d2.push([i, Math.cos(i)]);
+        }
+        var d3 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.1) {
+          d3.push([i, Math.tan(i)]);
+        }
+        $.plot("#placeholder-basic-option", [{
           label: "sin(x)",
           data: d1
         },
@@ -1572,42 +1573,42 @@
           label: "tan(x)",
           data: d3
         }
-      ], {
-        series: {
-          lines: {
-            show: true
+        ], {
+          series: {
+            lines: {
+              show: true
+            },
+            points: {
+              show: true
+            }
           },
-          points: {
-            show: true
-          }
-        },
-        xaxis: {
-          ticks: [
-            0, [Math.PI / 2, "\u03c0/2"],
-            [Math.PI, "\u03c0"],
-            [Math.PI * 3 / 2, "3\u03c0/2"],
-            [Math.PI * 2, "2\u03c0"]
-          ]
-        },
-        yaxis: {
-          ticks: 10,
-          min: -2,
-          max: 2,
-          tickDecimals: 3
-        },
-        grid: {
-          backgroundColor: {
-            colors: ["#fff", "#eee"]
+          xaxis: {
+            ticks: [
+              0, [Math.PI / 2, "\u03c0/2"],
+              [Math.PI, "\u03c0"],
+              [Math.PI * 3 / 2, "3\u03c0/2"],
+              [Math.PI * 2, "2\u03c0"]
+            ]
           },
-          borderWidth: {
-            top: 1,
-            right: 1,
-            bottom: 2,
-            left: 2
+          yaxis: {
+            ticks: 10,
+            min: -2,
+            max: 2,
+            tickDecimals: 3
+          },
+          grid: {
+            backgroundColor: {
+              colors: ["#fff", "#eee"]
+            },
+            borderWidth: {
+              top: 1,
+              right: 1,
+              bottom: 2,
+              left: 2
+            }
           }
-        }
+        });
       });
-    });
     </script></textarea>
                         </div>
                         <div data-pws-tab="google-chart" data-pws-tab-name="Google">
@@ -1625,15 +1626,15 @@
     </div>
     
     <script>
-    if($("#barChart").length) {
-      var barChartCanvas = $("#barChart").get(0).getContext("2d");
-      // This will get the first returned node in the jQuery collection.
-      var barChart = new Chart(barChartCanvas, {
-        type: 'bar',
-        data: data,
-        options: options
-      });
-    }
+      if ($("#barChart").length) {
+        var barChartCanvas = $("#barChart").get(0).getContext("2d");
+        // This will get the first returned node in the jQuery collection.
+        var barChart = new Chart(barChartCanvas, {
+          type: 'bar',
+          data: data,
+          options: options
+        });
+      }
     </script></textarea>
                         </div>
                         <!-- Tabs Starts -->
@@ -1658,8 +1659,8 @@
         bindto: '#c3-line-chart',
         data: {
           columns: [
-              ['data1', 30, 200, 100, 400, 150, 250],
-              ['data2', 50, 20, 10, 40, 15, 25]
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
           ]
         }
       });
@@ -1683,19 +1684,19 @@
     <div class="ct-chart ct-perfect-fourth" id="ct-chart-line"></div>
     
     <script>
-    new Chartist.Line('#ct-chart-line', {
+      new Chartist.Line('#ct-chart-line', {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         series: [
-            [12, 9, 7, 8, 5],
-            [2, 1, 3.5, 7, 3],
-            [1, 3, 4, 5, 6]
+          [12, 9, 7, 8, 5],
+          [2, 1, 3.5, 7, 3],
+          [1, 3, 4, 5, 6]
         ]
-    }, {
+      }, {
         fullWidth: true,
         chartPadding: {
-            right: 40
+          right: 40
         }
-    });
+      });
     </script></textarea>
                         </div>
                         <!-- Chartist Ends -->
@@ -1717,48 +1718,48 @@
     <div id="morris-line-example"></div>
     
     <script>
-    Morris.Line({
+      Morris.Line({
         element: 'morris-line-example',
         data: [{
-                y: '2006',
-                a: 100,
-                b: 90
-            },
-            {
-                y: '2007',
-                a: 75,
-                b: 65
-            },
-            {
-                y: '2008',
-                a: 50,
-                b: 40
-            },
-            {
-                y: '2009',
-                a: 75,
-                b: 65
-            },
-            {
-                y: '2010',
-                a: 50,
-                b: 40
-            },
-            {
-                y: '2011',
-                a: 75,
-                b: 65
-            },
-            {
-                y: '2012',
-                a: 100,
-                b: 90
-            }
+          y: '2006',
+          a: 100,
+          b: 90
+        },
+        {
+          y: '2007',
+          a: 75,
+          b: 65
+        },
+        {
+          y: '2008',
+          a: 50,
+          b: 40
+        },
+        {
+          y: '2009',
+          a: 75,
+          b: 65
+        },
+        {
+          y: '2010',
+          a: 50,
+          b: 40
+        },
+        {
+          y: '2011',
+          a: 75,
+          b: 65
+        },
+        {
+          y: '2012',
+          a: 100,
+          b: 90
+        }
         ],
         xkey: 'y',
         ykeys: ['a', 'b'],
         labels: ['Series A', 'Series B']
-    });
+      });
     </script></textarea>
                         </div>
                         <!-- Morris Ends -->
@@ -1776,11 +1777,11 @@
     <div id="sparkline-line-chart"></div>
     
     <script>
-    $("#sparkline-line-chart").sparkline([5,6,7,9,9,5,3,2,2,4,6,7], {
-      type: 'line',
-      width: '100%',
-      height: '100%'
-    });
+      $("#sparkline-line-chart").sparkline([5, 6, 7, 9, 9, 5, 3, 2, 2, 4, 6, 7], {
+        type: 'line',
+        width: '100%',
+        height: '100%'
+      });
     </script></textarea>
                         </div>
                         <!-- Sparkline Ends -->
@@ -1799,16 +1800,16 @@
       <div id="justgage" class="gauge"></div>
     
       <script>
-      window.onload = function() {
-        var g1 = new JustGage({
-          id: "g1",
-          value: getRandomInt(0, 100),
-          min: 0,
-          max: 100,
-          title: "Big Fella",
-          label: "pounds"
-        });
-      };
+        window.onload = function () {
+          var g1 = new JustGage({
+            id: "g1",
+            value: getRandomInt(0, 100),
+            min: 0,
+            max: 100,
+            title: "Big Fella",
+            label: "pounds"
+          });
+        };
       </script>
                                         </textarea>
                         </div>
@@ -1837,12 +1838,12 @@
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
+          center: { lat: -34.397, lng: 150.644 },
           zoom: 8
         });
       }
-    
-      $(function() {
+
+      $(function () {
         jQuery('#vmap').vectorMap({ map: 'world_en' });
       });
     </script></textarea>
@@ -1968,22 +1969,22 @@
     
     <script>
       $.validator.setDefaults({
-          submitHandler: function() {
-              alert("submitted!");
-          }
+        submitHandler: function () {
+          alert("submitted!");
+        }
       });
-      $(function() {
-          // validate the comment form when it is submitted
-          $("#commentForm").validate({
-            errorPlacement: function(label, element) {
-              label.addClass('text-danger');
-              label.insertAfter(element);
-            },
-            highlight: function(element, errorClass) {
-              $(element).parent().addClass('has-danger')
-              $(element).addClass('form-control-danger')
-            }
-          });
+      $(function () {
+        // validate the comment form when it is submitted
+        $("#commentForm").validate({
+          errorPlacement: function (label, element) {
+            label.addClass('text-danger');
+            label.insertAfter(element);
+          },
+          highlight: function (element, errorClass) {
+            $(element).parent().addClass('has-danger')
+            $(element).addClass('form-control-danger')
+          }
+        });
       });
     </script></textarea>
                         </div>
@@ -2052,12 +2053,12 @@
     <script>
       var form = $("#example-form");
       form.children("div").steps({
-          headerTag: "h3",
-          bodyTag: "section",
-          transitionEffect: "slideLeft",
-          onFinished: function (event, currentIndex) {
-              alert("Submitted!");
-          }
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        onFinished: function (event, currentIndex) {
+          alert("Submitted!");
+        }
       });
     </script></textarea>
                         </div>
@@ -2093,7 +2094,7 @@
     </form>
     
     <script>
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('.repeater').repeater()
       });
     </script></textarea>
@@ -2123,14 +2124,14 @@
     
     <script>
       $('#tags').tagsInput({
-          'width': '100%',
-          'height': '75%',
-          'interactive': true,
-          'defaultText': 'Add More',
-          'removeWithBackspace': true,
-          'minChars': 0,
-          'maxChars': 20, // if not provided there is no limit
-          'placeholderColor': '#666666'
+        'width': '100%',
+        'height': '75%',
+        'interactive': true,
+        'defaultText': 'Add More',
+        'removeWithBackspace': true,
+        'minChars': 0,
+        'maxChars': 20, // if not provided there is no limit
+        'placeholderColor': '#666666'
       });
     </script></textarea>
                         </div>
@@ -2220,47 +2221,47 @@
     <script>
       //Define substring matcher function
       var substringMatcher = function (strs) {
-          return function findMatches(q, cb) {
-              var matches, substringRegex;
-    
-              // an array that will be populated with substring matches
-              matches = [];
-    
-              // regex used to determine if a string contains the substring `q`
-              substrRegex = new RegExp(q, 'i');
-    
-              // iterate through the pool of strings and for any string that
-              // contains the substring `q`, add it to the `matches` array
-              $.each(strs, function (i, str) {
-                  if (substrRegex.test(str)) {
-                      matches.push(str);
-                  }
-              });
-    
-              cb(matches);
-          };
+        return function findMatches(q, cb) {
+          var matches, substringRegex;
+
+          // an array that will be populated with substring matches
+          matches = [];
+
+          // regex used to determine if a string contains the substring `q`
+          substrRegex = new RegExp(q, 'i');
+
+          // iterate through the pool of strings and for any string that
+          // contains the substring `q`, add it to the `matches` array
+          $.each(strs, function (i, str) {
+            if (substrRegex.test(str)) {
+              matches.push(str);
+            }
+          });
+
+          cb(matches);
+        };
       };
-    
+
       //dataset
       var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-          'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-          'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-          'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-          'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-          'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-          'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-          'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-          'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+        'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+        'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+        'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
       ];
-    
+
       //Initialisation
       $('#typeahead-sample .typeahead').typeahead({
-          hint: true,
-          highlight: true,
-          minLength: 1
+        hint: true,
+        highlight: true,
+        minLength: 1
       }, {
-          name: 'states',
-          source: substringMatcher(states)
+        name: 'states',
+        source: substringMatcher(states)
       });
     </script></textarea>
                         </div>
@@ -2520,31 +2521,31 @@
     
     <script>
       tinymce.init({
-          selector: '#tinyMceExample',
-          height: 500,
-          theme: 'modern',
-          plugins: [
-              'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-              'searchreplace wordcount visualblocks visualchars code fullscreen',
-              'insertdatetime media nonbreaking save table contextmenu directionality',
-              'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
-          ],
-          toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-          toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
-          image_advtab: true,
-          templates: [{
-                  title: 'Test template 1',
-                  content: 'Test 1'
-              },
-              {
-                  title: 'Test template 2',
-                  content: 'Test 2'
-              }
-          ],
-          content_css: [
-              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-              '//www.tinymce.com/css/codepen.min.css'
-          ]
+        selector: '#tinyMceExample',
+        height: 500,
+        theme: 'modern',
+        plugins: [
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'searchreplace wordcount visualblocks visualchars code fullscreen',
+          'insertdatetime media nonbreaking save table contextmenu directionality',
+          'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+        image_advtab: true,
+        templates: [{
+          title: 'Test template 1',
+          content: 'Test 1'
+        },
+        {
+          title: 'Test template 2',
+          content: 'Test 2'
+        }
+        ],
+        content_css: [
+          '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+          '//www.tinymce.com/css/codepen.min.css'
+        ]
       });
     </script></textarea>
                         </div>
@@ -2568,17 +2569,17 @@
     <script>
       $.fn.editable.defaults.mode = 'inline';
       $.fn.editableform.buttons =
-          '<button type="submit" class="btn btn-primary btn-sm editable-submit">' +
-          '<i class="fa fa-fw fa-check"></i>' +
-          '</button>' +
-          '<button type="button" class="btn btn-default btn-sm editable-cancel">' +
-          '<i class="fa fa-fw fa-times"></i>' +
-          '</button>';
+        '<button type="submit" class="btn btn-primary btn-sm editable-submit">' +
+        '<i class="fa fa-fw fa-check"></i>' +
+        '</button>' +
+        '<button type="button" class="btn btn-default btn-sm editable-cancel">' +
+        '<i class="fa fa-fw fa-times"></i>' +
+        '</button>';
       $('#username').editable({
-          type: 'text',
-          pk: 1,
-          name: 'username',
-          title: 'Enter username'
+        type: 'text',
+        pk: 1,
+        name: 'username',
+        title: 'Enter username'
       });
     </script></textarea>
                         </div>
@@ -2601,8 +2602,8 @@
     
     <script>
       $('#summernoteExample').summernote({
-          height: 300,
-          tabsize: 2
+        height: 300,
+        tabsize: 2
       });
     </script></textarea>
                         </div>
@@ -2624,7 +2625,7 @@
     <textarea id="simpleMde">Start editing here&lt;/textarea&gt;
     
     <script>
-      if($("#simpleMde").length) {
+      if ($("#simpleMde").length) {
         var simplemde = new SimpleMDE({ element: $("#simpleMde")[0] });
       }
     </script></textarea>
@@ -2648,17 +2649,17 @@
     
     <script>
       var quill = new Quill('#quillExample', {
-          modules: {
-              toolbar: [
-                  [{
-                      header: [1, 2, false]
-                  }],
-                  ['bold', 'italic', 'underline'],
-                  ['image', 'code-block']
-              ]
-          },
-          placeholder: 'Compose an epic...',
-          theme: 'snow' // or 'bubble'
+        modules: {
+          toolbar: [
+            [{
+              header: [1, 2, false]
+            }],
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block']
+          ]
+        },
+        placeholder: 'Compose an epic...',
+        theme: 'snow' // or 'bubble'
       });
     </script></textarea>
                         </div>
@@ -2685,7 +2686,7 @@
       var editor = ace.edit("aceExample");
       editor.setTheme("ace/theme/chaos"); //set theme
       editor.getSession().setMode("ace/mode/javascript"); //set mode
-      document.getElementById('aceExample').style.fontSize='1rem'; //styling
+      document.getElementById('aceExample').style.fontSize = '1rem'; //styling
     </script></textarea>
                         </div>
                         <!-- Ace Ends -->
@@ -2707,17 +2708,17 @@
                           <textarea class="multiple-codes">
     <textarea rows="4" cols="50" name="code-editable" id="code-editable">
       <script>
-      var x = 3;
-      var y = 4;
-      var z = x + y;
+        var x = 3;
+        var y = 4;
+        var z = x + y;
       </script>
     &lt;/textarea&gt;
     
     <script>
       var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById('code-editable'), {
-          mode: "javascript",
-          theme: "ambiance",
-          lineNumbers: true
+        mode: "javascript",
+        theme: "ambiance",
+        lineNumbers: true
       });
     </script></textarea>
                         </div>
