@@ -43,5 +43,23 @@ namespace HRM.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("get-vacation-days")]
+        public async Task<IActionResult> GetVacationDays()
+        {
+            try
+            {
+                var (vacationDaysTaken, excessVacationDays) = await _service.GetVacationDays();
+                return Ok(new
+                {
+                    VacationDaysTaken = vacationDaysTaken,
+                    ExcessVacationDays = excessVacationDays
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

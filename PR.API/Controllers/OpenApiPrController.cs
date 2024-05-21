@@ -33,7 +33,7 @@ public class OpenApiPrController : Controller
     {
         try
         {
-            var result = await _service.GetListEmploymentIncludeWorkingTime();
+            var result = await _service.GetListEmploymentIncludeWorkingTimeThisMonth();
             return Ok(result);
         }
         catch (Exception ex)

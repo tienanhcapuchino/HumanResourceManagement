@@ -6,5 +6,5 @@ public interface IOpenApiPrService
 {
     Task<List<Employment>> GetListEmploymentsIncludePersonal();
     
-    Task<List<Employment>> GetListEmploymentIncludeWorkingTime();
+    Task<List<Employment>> GetListEmploymentIncludeWorkingTimeThisMonth();
 }
