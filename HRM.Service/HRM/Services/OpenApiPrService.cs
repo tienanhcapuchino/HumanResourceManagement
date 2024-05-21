@@ -21,10 +21,11 @@ public class OpenApiPrService : IOpenApiPrService
         return result;
     }
 
-    public async Task<List<Employment>> GetListEmploymentIncludeWorkingTime()
+    public async Task<List<Employment>> GetListEmploymentIncludeWorkingTimeThisMonth()
     {
         var result = await _context.Employments
             .Include(e => e.EmploymentWorkingTimes)
+            .Where(e => e.EmploymentWorkingTimes.Any(x => x.MonthWorking == DateTime.Now.Month))
             .ToListAsync();
         return result;
     }

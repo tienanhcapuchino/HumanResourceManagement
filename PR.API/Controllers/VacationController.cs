@@ -28,18 +28,4 @@ public class VacationController : Controller
             return BadRequest(ex.Message);
         }
     }
-
-    [HttpGet("get-total-vacation")]
-    public IActionResult GetTotalVacation()
-    {
-        try
-        {
-            var result = _service.GetTotalVacation();
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
 }

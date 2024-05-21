@@ -137,4 +137,33 @@ public class EmployeesService : IEmployeesService
         var result = employees.Sum(e => e.PaidToDate);
         return result ?? 0;
     }
+
+    public async Task<(int, int)> GetVacationDays()
+    {
+        var totalVacationDaysTaken = 0;
+        var excessVacationDays = 0;
+        var employees = _context.Employees.ToList();
+
+        const string apiUrl = $"{RoutesAPI_PR.RootPR_APIUrl}{RoutesAPI_HRM.GetListEmploymentsIncludeWorkingTime}";
+        var apiResponse = CommonUIService.GetDataAPI(apiUrl, MethodAPI.GET);
+
+        if (apiResponse.IsSuccessStatusCode)
+        {
+            var dataResponse = await apiResponse.Content.ReadAsStringAsync();
+            var employments = JsonConvert.DeserializeObject<List<Employment>>(dataResponse);
+            if (employments is not null && employments.Count > 0)
+            {
+                var employmentIds = employments.Select(e => e.EmploymentId).ToList();
+                totalVacationDaysTaken = employees
+                    .Where(e => employmentIds.Contains(e.IdEmployee))
+                    .Sum(e => e.VacationDays) ?? 0;
+                var totalVacationDays = employments
+                    .SelectMany(e => e.EmploymentWorkingTimes)
+                    .Sum(e => e.TotalNumberVacationWorkingDaysPerMonth) ?? 0;
+                excessVacationDays = (int)totalVacationDays - totalVacationDaysTaken;
+            }
+        }
+
+        return (totalVacationDaysTaken, excessVacationDays);
+    }
 }

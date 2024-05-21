@@ -134,13 +134,4 @@ public class VacationService : IVacationService
 
         return result;
     }
-
-    public decimal GetTotalVacation()
-    {
-        var employmentsWorkingTime = _context.EmploymentWorkingTimes
-            .Where(e => e.MonthWorking == DateTime.Now.Month)
-            .ToList();
-        var result = employmentsWorkingTime.Sum(ewt => ewt.TotalNumberVacationWorkingDaysPerMonth);
-        return result ?? 0;
-    }
 }
