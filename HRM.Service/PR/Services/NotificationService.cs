@@ -25,7 +25,8 @@ namespace HRM.Service.HR.Services
         {
             var result = new NotificationModel()
             {
-                Datas = new List<NotificationData>()
+                Datas = new List<NotificationData>(),
+                TotalAnniveralDays = 0
             };
 
             #region get employees birth date today
@@ -40,7 +41,9 @@ namespace HRM.Service.HR.Services
             var employeesAniversal = await GetAllEmployeesAniveral();
             if (employeesAniversal != null && employeesAniversal.Any())
             {
-                result.Datas.AddRange(GenerateNotificationContent(employeesAniversal, NotificationType.HiringAniverary));
+                var anniveral = GenerateNotificationContent(employeesAniversal, NotificationType.HiringAniverary);
+                result.Datas.AddRange(anniveral);
+                result.TotalAnniveralDays = anniveral.Count;
             }
             #endregion
 

@@ -11,6 +11,7 @@ namespace HRM.Domain.Models
     {
         public List<NotificationData> Datas { get; set; }
         public int TotalCount { get; set; }
+        public int TotalAnniveralDays { get; set; }
     }
     public class NotificationData
     {
