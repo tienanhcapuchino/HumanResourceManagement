@@ -19,7 +19,7 @@ public class EmployeesService : IEmployeesService
         _context = context;
     }
 
-    public async Task<List<TotalEarningModel>> GetTotalEarning(HrmFilterType filterType)
+    public async Task<List<TotalEarningModel>> GetTotalEarningFilter(HrmFilterType filterType)
     {
         var result = new List<TotalEarningModel>();
 
@@ -129,5 +129,12 @@ public class EmployeesService : IEmployeesService
         }
 
         return result;
+    }
+
+    public decimal GetTotalEarning()
+    {
+        var employees = _context.Employees.ToList();
+        var result = employees.Sum(e => e.PaidToDate);
+        return result ?? 0;
     }
 }

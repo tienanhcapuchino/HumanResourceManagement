@@ -16,12 +16,26 @@ namespace HRM.API.Controllers
             _service = service;
         }
 
-        [HttpGet("get-total-earning/{filterType}")]
-        public async Task<IActionResult> GetTotalEarning(HrmFilterType filterType)
+        [HttpGet("get-total-earning-filter/{filterType}")]
+        public async Task<IActionResult> GetTotalEarningFilter(HrmFilterType filterType)
         {
             try
             {
-                var result = await _service.GetTotalEarning(filterType);
+                var result = await _service.GetTotalEarningFilter(filterType);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("get-total-earning")]
+        public IActionResult GetTotalEarning()
+        {
+            try
+            {
+                var result = _service.GetTotalEarning();
                 return Ok(result);
             }
             catch (Exception ex)
