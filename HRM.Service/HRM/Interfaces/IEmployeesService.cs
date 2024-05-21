@@ -6,5 +6,7 @@ namespace HRM.Service.HRM.Interfaces;
 
 public interface IEmployeesService
 {
-    Task<List<TotalEarningModel>> GetTotalEarning(HrmFilterType filterType);
+    Task<List<TotalEarningModel>> GetTotalEarningFilter(HrmFilterType filterType);
+
+    decimal GetTotalEarning();
 }
