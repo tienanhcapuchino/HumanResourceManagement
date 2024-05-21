@@ -3,7 +3,6 @@ $(function () {
 		$("#loadingSpinner").show();
 	});
 	$(document).ajaxStop(() => {
-		console.log("stop di dm");
 		$("#loadingSpinner").hide();
 	});
 	$.ajax({
