@@ -1,94 +1,60 @@
-////////// SIDEBAR //////// 
-$sidebar-width-lg: 220px;
-$sidebar-width-mini: 145px; 
+
+////////// SIDEBAR ////////
+$sidebar-width-lg: 260px;
+$sidebar-width-mini: 185px;
 $sidebar-width-icon: 70px;
 
-$sidebar-light-bg: #F4F5F7;
-$sidebar-light-menu-color: #484848;
-$sidebar-light-submenu-color: $sidebar-light-menu-color;
-$sidebar-light-menu-active-bg: #fff;
-$sidebar-light-menu-active-color: #1F3BB3;
-$sidebar-light-menu-hover-bg: #fff;
-$sidebar-light-menu-hover-color: #fff;
-$sidebar-light-submenu-hover-color: #000;
-$sidebar-light-submenu-active-color: #1F3BB3;
-$sidebar-light-menu-icon-color: $sidebar-light-menu-color;
-$sidebar-light-menu-arrow-color: #bfccda;
-$sidebar-light-profile-name-color: #404852;
-$sidebar-light-profile-title-color: #8d9498;
+$sidebar-light-bg: $white;
+$sidebar-light-menu-color: #3e4b5b;
+$sidebar-light-submenu-color: #888;
+$sidebar-light-menu-active-bg: $white;
+$sidebar-light-menu-active-color: $primary;
+$sidebar-light-menu-hover-bg: darken($sidebar-light-bg, 1%);
+$sidebar-light-menu-hover-color: darken($sidebar-light-menu-color, 10%);
+$sidebar-light-submenu-hover-color: darken($sidebar-light-submenu-color, 20%);
+$sidebar-light-menu-icon-color: #bba8bff5;
+$sidebar-light-menu-arrow-color: #9e9da0;
+$sidebar-light-menu-border-color: #f2edf3;
 
-$sidebar-dark-bg: #232227; 
-$sidebar-dark-menu-color: #FFFFFF;
-$sidebar-dark-menu-active-bg: transparent;
-$sidebar-dark-menu-active-color: $white;
-$sidebar-dark-menu-hover-bg: transparent;
-$sidebar-dark-menu-hover-color: #fff;
+$sidebar-dark-bg: #18151e;
+$sidebar-dark-menu-color: $white;
+$sidebar-dark-menu-active-bg: #282037;
+$sidebar-dark-menu-active-color: darken($white, 30%);
+$sidebar-dark-menu-hover-bg: lighten($sidebar-dark-bg, 10%);
+$sidebar-dark-menu-hover-color: $white;
 $sidebar-dark-submenu-color: $sidebar-dark-menu-color;
 $sidebar-dark-submenu-hover-bg: initial;
-$sidebar-dark-submenu-hover-color: #9a94a7;
-$sidebar-dark-menu-icon-color: $sidebar-dark-menu-color;
-$sidebar-dark-profile-name-color: #ffffff;
-$sidebar-dark-profile-title-color: #8d9498; 
+$sidebar-dark-submenu-hover-color: darken($sidebar-dark-submenu-color, 30%);
+;
+$sidebar-dark-menu-icon-color: #bba8bff5;
+$sidebar-dark-menu-arrow-color: #9e9da0;
 
+$sidebar-menu-font-size: $default-font-size;
+$sidebar-menu-padding-y: 1.125rem;
+$sidebar-menu-padding-x: 2.25rem;
 
-$sidebar-light-category-color: #404040;
-$sidebar-nav-category-border-color:rgba(255, 255, 255, 0.13);
+$sidebar-submenu-font-size: .8125rem;
+$sidebar-submenu-item-padding: .75rem 2rem .75rem 2rem;
 
-$sidebar-dark-category-color: #fff;
-
-$sidebar-menu-font-size: 14px;
-$sidebar-menu-padding-left: 35px;
-$sidebar-menu-padding-right: 35px;
-$sidebar-menu-padding-top: 10px;
-$sidebar-menu-padding-bottom: 10px;
-
-$sidebar-submenu-padding: .25rem 0 0 3.07rem;
-$sidebar-submenu-font-size: 12px;
-$sidebar-submenu-item-padding: .7rem 1rem;
-
-$sidebar-icon-font-size:  22px;
+$sidebar-icon-font-size: 1.125rem;
 $sidebar-arrow-font-size: .625rem;
 
 $sidebar-profile-bg: transparent;
-$sidebar-profile-padding: 0 1.625rem 2.25rem 1.188rem;
+$sidebar-profile-padding: .75rem 1.625rem .75rem 1.188rem;
 
 $sidebar-mini-menu-padding: .8125rem 1rem .8125rem 1rem;
 
-$sidebar-icon-only-bg :#fff;
 $sidebar-icon-only-menu-padding: .5rem 1.625rem .5rem 1.188rem;
 $sidebar-icon-only-submenu-padding: 0 0 0 1.5rem;
 
-$sidebar-icon-only-light-color :rgba($primary, .7);
-
-$sidebar-box-shadow: 6px 16px 31px -18px #b7bcd1;
-
-$rtl-sidebar-submenu-padding: 0 4.5rem 0 0;
+$rtl-sidebar-submenu-padding: 0 1.5rem 0 0;
 
 $icon-only-collapse-width: 190px;
-$icon-only-menu-bg-light: #fff;
-$icon-only-menu-bg-dark: $sidebar-dark-bg;
+$icon-only-menu-bg-light: $sidebar-light-menu-hover-bg;
+$icon-only-menu-bg-dark: $sidebar-dark-menu-hover-bg;
 
 ///////// SIDEBAR ////////
 
-///////// BOXED LAYOUT ///////
-$boxed-container-width: 1200px;
-$boxed-layout-bg: #c6c8ca;
-///////// BOXED LAYOUT ///////
-
-///////// SETTINGS PANEL ////////
-
-$settings-panel-width: 300px;
-
-///////// NAVBAR ////////
-$navbar-default-bg: #F4F5F7;
-$navbar-height: 97px;
-$navbar-height-small: 70px;
-$navbar-menu-color: #6C7383;
-$navbar-font-size: $sidebar-menu-font-size;
-$navbar-icon-font-size: 1.625rem;
-$navbar-link-color: #212121;
-$navbar-menu-icon-color:#212121;
-///////// NAVBAR //////// 
-$gray:             #434a54;
-
-$sidebar-purple-active-color: $purple;
+$bullet-line-list-shape-bg: color(white) !default;
+$pro-banner: #000;
+$blue-teal-gradient: linear-gradient(to right, #da8cff, #9a55ff) !important;

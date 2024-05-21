@@ -117,6 +117,12 @@ h6 {
   }
 }
 
+@media (max-width: 767px) {
+  .left-sidebar{
+    display:none;
+  }
+}
+
 .documentation .left-sidebar .logo-wrapper {
   margin-top: 1rem;
   margin-bottom: 1.6rem;
@@ -336,10 +342,10 @@ li {
   list-style-type: none;
 }
 
-/* Pws-tabs end */
-
 @media (max-width: 767px) {
   .left-sidebar{
     display:none;
   }
 }
+
+/* Pws-tabs end */
