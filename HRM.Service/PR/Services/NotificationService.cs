@@ -147,10 +147,10 @@ namespace HRM.Service.HR.Services
                                                         .FirstOrDefault();
                             if (currentEmployee != null)
                             {
-                                var currentWorkingTime = currentEmployee.EmploymentWorkingTimes
+                                var vacationWorkingTime = currentEmployee.EmploymentWorkingTimes
                                                         .Where(w => w.YearWorking.Value.Year == yearToday && w.MonthWorking == monthToday)
                                                         .Select(w => w.TotalNumberVacationWorkingDaysPerMonth).FirstOrDefault();
-                                if (currentWorkingTime >= employee.VactionDays)
+                                if (vacationWorkingTime <= employee.VactionDays)
                                 {
                                     result.Add(new EmployeesLimitedVacationModel
                                     {
