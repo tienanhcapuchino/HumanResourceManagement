@@ -1,11 +1,10 @@
-﻿using HRM.Domain;
-using HRM.Domain.Constants;
+﻿using HRM.Domain.Constants;
 using HRM.Domain.Entities;
 using HRM.Domain.Enums;
+using HRM.Domain.HRM.Entities;
 using HRM.Domain.Models;
 using HRM.Service.HR.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System;
 
 namespace HRM.Service.HR.Services
@@ -16,9 +15,12 @@ namespace HRM.Service.HR.Services
         private readonly int dateToday = DateTime.UtcNow.Day;
         private readonly int monthToday = DateTime.UtcNow.Month;
         private readonly int yearToday = DateTime.UtcNow.Year;
-        public NotificationService(HrmContext dbContext)
+        private readonly MydbContext _mydbContext;
+        public NotificationService(HrmContext dbContext,
+            MydbContext mydbContext)
         {
             _dbContext = dbContext;
+            _mydbContext = mydbContext;
         }
 
         public async Task<NotificationModel> GetAllNotificationsAsync()
@@ -83,11 +85,11 @@ namespace HRM.Service.HR.Services
                     result.AddRange(allEmployees);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("error when get all employee has birth date today " + e.Message);
             }
-            
+
             return result;
         }
 
@@ -105,7 +107,7 @@ namespace HRM.Service.HR.Services
                                     EmployeeName = e.Personal.CurrentFirstName + e.Personal.CurrentMiddleName + e.Personal.CurrentLastName,
                                     AniveralYears = yearToday - e.HireDateForWorking.Value.Year
                                 }).ToListAsync();
-                if (allEmps != null  && allEmps.Any())
+                if (allEmps != null && allEmps.Any())
                 {
                     result.AddRange(allEmps);
                 }
@@ -117,7 +119,7 @@ namespace HRM.Service.HR.Services
             return result;
         }
 
-        public async Task<List<EmployeesLimitedVacationModel>> GetEmployeesLimitedVacation()
+        private async Task<List<EmployeesLimitedVacationModel>> GetEmployeesLimitedVacation()
         {
             var result = new List<EmployeesLimitedVacationModel>();
             try
@@ -125,39 +127,38 @@ namespace HRM.Service.HR.Services
                 var allEmpsLimit = await _dbContext.Employments.Include(p => p.Personal)
                                .Include(e => e.EmploymentWorkingTimes).ToListAsync();
 
-                #region get vacations day from OpenAPI from HR
-
-                HttpClient client = new HttpClient();
                 var allEmployeesId = allEmpsLimit.Select(x => x.EmploymentId).ToList();
-                string jsonData = JsonConvert.SerializeObject(allEmployeesId);
-                string urlAPI = $"{RoutesAPI_HRM.RootHRM_APIUrl}{RoutesAPI_PR.GetEmployeesVacations}";
-                var responseAPI = CommonUIService.GetDataAPI(urlAPI, MethodAPI.POST, jsonData);
-                #endregion
 
-                if (responseAPI.IsSuccessStatusCode)
-                {
-                    var dataResponse = await responseAPI.Content.ReadAsStringAsync();
-                    var employeesHR = JsonConvert.DeserializeObject<List<EmployeesVactionModel>>(dataResponse);
-                    if (employeesHR != null && employeesHR.Count > 0)
+                var emVacation = await _mydbContext.Employees
+                    .Where(x => allEmployeesId.Contains(x.IdEmployee))
+                    .Select(x => new EmployeesVactionModel
                     {
-                        foreach (var employee in employeesHR)
+                        EmployeeId = x.IdEmployee,
+                        VactionDays = x.VacationDays.Value,
+                        EmployeeName = x.FirstName + x.LastName
+                    })
+                    .ToListAsync();
+
+                if (emVacation != null && emVacation.Count > 0)
+                {
+
+                    foreach (var employee in emVacation)
+                    {
+                        var currentEmployee = allEmpsLimit
+                                                    .Where(x => x.EmploymentId == employee.EmployeeId)
+                                                    .FirstOrDefault();
+                        if (currentEmployee != null)
                         {
-                            var currentEmployee = allEmpsLimit
-                                                        .Where(x => x.EmploymentId == employee.EmployeeId)
-                                                        .FirstOrDefault();
-                            if (currentEmployee != null)
+                            var vacationWorkingTime = currentEmployee.EmploymentWorkingTimes
+                                                    .Where(w => w.YearWorking.Value.Year == yearToday && w.MonthWorking == monthToday)
+                                                    .Select(w => w.TotalNumberVacationWorkingDaysPerMonth).FirstOrDefault();
+                            if (vacationWorkingTime <= employee.VactionDays)
                             {
-                                var vacationWorkingTime = currentEmployee.EmploymentWorkingTimes
-                                                        .Where(w => w.YearWorking.Value.Year == yearToday && w.MonthWorking == monthToday)
-                                                        .Select(w => w.TotalNumberVacationWorkingDaysPerMonth).FirstOrDefault();
-                                if (vacationWorkingTime <= employee.VactionDays)
+                                result.Add(new EmployeesLimitedVacationModel
                                 {
-                                    result.Add(new EmployeesLimitedVacationModel
-                                    {
-                                        EmployeeName = employee.EmployeeName,
-                                        NumberOfVacation = employee.VactionDays
-                                    });
-                                }
+                                    EmployeeName = employee.EmployeeName,
+                                    NumberOfVacation = employee.VactionDays
+                                });
                             }
                         }
                     }

@@ -1,16 +1,15 @@
 ﻿using HRM.Domain.Models;
 using HRM.Service.HR.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PR.API.Controllers
+namespace HRM.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class NotificationController : ControllerBase
     {
         private readonly INotificationService _notificationService;
-        
+
         public NotificationController(INotificationService notificationService)
         {
             _notificationService = notificationService;
@@ -24,12 +23,11 @@ namespace PR.API.Controllers
                 var result = await _notificationService.GetAllNotificationsAsync();
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("error when get all notifications: " + ex.Message);
                 throw;
             }
         }
-
     }
 }
