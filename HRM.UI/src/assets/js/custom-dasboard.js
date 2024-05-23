@@ -5,7 +5,7 @@ $(() => {
 
 function getTotalEarnings() {
 	$.ajax({
-		url: "http://localhost:5247/api/Employees/get-total-earning",
+		url: "http://localhost:5085/api/Employees/get-total-earning",
 		method: "GET",
 		contentType: "application/json",
 		success: function (response) {
@@ -20,7 +20,7 @@ function getTotalEarnings() {
 
 function getVacationDays() {
 	$.ajax({
-		url: "http://localhost:5247/api/Employees/get-vacation-days",
+		url: "http://localhost:5085/api/Employees/get-vacation-days",
 		method: "GET",
 		contentType: "application/json",
 		success: function (response) {

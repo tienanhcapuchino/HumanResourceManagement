@@ -6,7 +6,7 @@ $(function () {
         $("#loadingSpinner").hide();
     });
     $.ajax({
-        url: "http://localhost:5097/api/notification/getall",
+        url: "http://localhost:5085/api/notification/getall",
         method: "GET",
         contentType: "application/json",
         success: function (response) {
